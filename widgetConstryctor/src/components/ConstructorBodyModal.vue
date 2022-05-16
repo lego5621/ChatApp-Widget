@@ -16,7 +16,7 @@ const colors = [
 	'#ed5353',
 	'#ffa154',
 	'#ffe16b',
-	'#9bdb4d',
+	'#43d854',
 	'#43d6b5',
 	'#64baff',
 	'#cd9ef7',
@@ -57,6 +57,68 @@ let deleteWidgetItem = () => {
 	store.settings.listMessengers.splice(props.SelectItemIndex, 1);
 	closeModal();
 };
+
+const linkExample = ref({
+	whatsapp: {
+		linkExample:
+			'https://chatapp.online/wa-redirect?phone=7XXXXXXXXXX&text=Hello world',
+		linkAbout: `https://chatapp.online/${
+			document.documentElement.lang == 'ru' ? 'ru/' : ''
+		}help/widgets-redirect/`,
+	},
+	telegram: {
+		linkExample: 'https://t.me/@username',
+		linkAbout: '',
+	},
+	viber: {
+		linkExample: 'viber://chat?number=+79851198793',
+		linkAbout: '',
+	},
+	facebook: {
+		linkExample: 'https://www.facebook.com/userName',
+		linkAbout: '',
+	},
+	vk: {
+		linkExample: 'https://vk.com/id0000000',
+		linkAbout: '',
+	},
+	skype: {
+		linkExample: 'skype:login',
+		linkAbout: '',
+	},
+	instagram: {
+		linkExample: 'http://instagram.com/@userName',
+		linkAbout: '',
+	},
+	pinterest: {
+		linkExample: 'http://pinterest.com/@userName',
+		linkAbout: '',
+	},
+	tiktok: {
+		linkExample: 'https://www.tiktok.com/@userName',
+		linkAbout: '',
+	},
+	twitter: {
+		linkExample: 'https://twitter.com/@userName',
+		linkAbout: '',
+	},
+	youtube: {
+		linkExample: 'https://www.youtube.com/user/userName',
+		linkAbout: '',
+	},
+	pelephone: {
+		linkExample: 'tel:8888888888',
+		linkAbout: '',
+	},
+	envelope: {
+		linkExample: 'mailto:example@example.com',
+		linkAbout: '',
+	},
+	robot: {
+		linkExample: 'https://example.com',
+		linkAbout: '',
+	},
+});
 </script>
 
 <template>
@@ -70,11 +132,8 @@ let deleteWidgetItem = () => {
 				<span
 					v-for="(icon, nameIcon) in icons"
 					:key="icon"
-					:class="
-						nameIcon == formData.icon
-							? 'select-icon ml-1 mr-1 mb-2'
-							: 'ml-1 mr-1  mb-2'
-					"
+					class="ml-1 mr-1 mb-2 icon-messenger"
+					:class="nameIcon == formData.icon ? 'select-icon ' : ''"
 					@click="formData.icon = nameIcon"
 				>
 					<component :is="icon"></component>
@@ -93,12 +152,31 @@ let deleteWidgetItem = () => {
 			</div>
 
 			<div class="d-flex"></div>
+
 			<h5 class="mt-3">{{ $t('link') }}</h5>
 			<div>
+				<div v-if="linkExample[formData.icon].linkExample" class="mb-3">
+					<div class="d-flex flex-wrap">
+						<span>
+							{{ $t('example') }}:
+							<span class="text-primary">
+								{{ linkExample[formData.icon].linkExample }}
+							</span>
+						</span>
+					</div>
+					<div v-show="linkExample[formData.icon].linkAbout" class="mt-1">
+						<small>
+							<a :href="linkExample[formData.icon].linkAbout" target="_blank">{{
+								$t('detail')
+							}}</a>
+						</small>
+					</div>
+				</div>
+
 				<input
 					type="text"
 					class="form-control"
-					placeholder="https://wa.me/7495xxxxxxx"
+					:placeholder="linkExample[formData.icon].linkExample"
 					maxlength="300"
 					v-model="formData.link"
 				/>
@@ -188,7 +266,7 @@ let deleteWidgetItem = () => {
 	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-span {
+.icon-messenger {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -212,7 +290,7 @@ span {
 	background: #848484;
 }
 
-span:hover {
+.icon-messenger:hover {
 	transform: scale(1.05);
 }
 

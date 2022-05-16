@@ -26,6 +26,10 @@ export default {
 				ifInternetProblem: 'Problem with Internet',
 			},
 		},
+
+		example: 'Example',
+		detail: 'Detail',
+
 	},
 	ru: {
 		icon: 'Иконка',
@@ -36,7 +40,7 @@ export default {
 		tooltip: 'Подсказка',
 		pasteScript: 'Вставте данные скрипты перез закрывающим тегом',
 		name: 'Название',
-		settingsWidget: 'Настройки виджита',
+		settingsWidget: 'Настройки виджета',
 		edit: 'Редактировать',
 		superWidget: 'Супер виджет',
 		add: 'Добавить',
@@ -54,5 +58,8 @@ export default {
 				ifInternetProblem: 'Проблема с интернетом',
 			},
 		},
+
+		example: 'Пример',
+		detail: 'Подробнее',
 	},
 };
