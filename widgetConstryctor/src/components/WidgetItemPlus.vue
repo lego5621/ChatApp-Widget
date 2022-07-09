@@ -20,7 +20,6 @@ const distanceWidgetItem = computed(() => {
 		return 60 + 'px';
 	}
 });
-
 </script>
 
 <template>
@@ -28,7 +27,7 @@ const distanceWidgetItem = computed(() => {
 		href="#"
 		class="btn-plus-color"
 		:class="'icons-' + props.position"
-		@click.prevent="openModal(Modal)"
+		@click.prevent="openModal(Modal, { showTooltip: true })"
 		v-show="store.settings.listMessengers.length <= 8"
 	>
 		<i class="fa fa-plus"></i>

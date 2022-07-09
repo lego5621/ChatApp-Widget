@@ -2,6 +2,7 @@
 import telegram from './icons/Telegram.vue';
 import whatsapp from './icons/WhatsApp.vue';
 import viber from './icons/Viber.vue';
+import { computed } from 'vue';
 import { markRaw } from 'vue';
 import { useStore } from '../store/state.js';
 import { useIcons } from '../use/useIcons.js';
@@ -13,6 +14,14 @@ const props = defineProps({
 });
 
 let store = useStore();
+
+let typeWidget = computed(() => {
+	if (props.widget.settings.typeWidget === 'business-card') {
+		return 'Виджет визитка';
+	} else {
+		return 'Виджет';
+	}
+});
 </script>
 
 <template>
@@ -21,6 +30,7 @@ let store = useStore();
 			<h5 class="card-title">{{ widget.name }}</h5>
 		</div>
 		<div class="card-body">
+			<div class="mb-2">{{ typeWidget }}</div>
 			<ul class="list-inline list-inline-condensed mb-0 mt-2 mt-sm-0">
 				<button
 					type="button"

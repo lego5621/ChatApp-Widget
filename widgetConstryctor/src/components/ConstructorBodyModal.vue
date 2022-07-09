@@ -10,7 +10,7 @@ import { useIcons } from '../use/useIcons.js';
 let store = useStore();
 const icons = useIcons();
 
-const props = defineProps({ SelectItemIndex: Number });
+const props = defineProps({ SelectItemIndex: Number, showTooltip: Boolean });
 
 const colors = [
 	'#ed5353',
@@ -181,16 +181,19 @@ const linkExample = ref({
 					v-model="formData.link"
 				/>
 			</div>
-			<h5 class="mt-3">{{ $t('tooltip') }}</h5>
-			<div>
-				<input
-					type="text"
-					class="form-control"
-					placeholder="Поддержка в WhatsApp"
-					maxlength="30"
-					v-model="formData.tooltip"
-				/>
+			<div v-show="showTooltip">
+				<h5 class="mt-3">{{ $t('tooltip') }}</h5>
+				<div>
+					<input
+						type="text"
+						class="form-control"
+						placeholder="Поддержка в WhatsApp"
+						maxlength="30"
+						v-model="formData.tooltip"
+					/>
+				</div>
 			</div>
+
 			<div class="d-flex justify-content-between">
 				<button
 					type="button"
